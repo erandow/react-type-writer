@@ -2,10 +2,7 @@
   "name": "react-type-writer",
   "version": "1.0.0",
   "description": "",
-  "author": [
-    "ErfanAsadi",
-    "ImanAkrami"
-  ],
+  "author": "",
   "license": "MIT",
   "repository": "ErfanAsadi/react-type-writer",
   "main": "dist/index.js",
