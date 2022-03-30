@@ -1,6 +1,6 @@
 # react-type-writer
 
-> 
+>
 
 [![NPM](https://img.shields.io/npm/v/react-type-writer.svg)](https://www.npmjs.com/package/react-type-writer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -8,23 +8,30 @@
 
 ```bash
 npm install --save react-type-writer
+yarn add react-type-writer
 ```
 
 ## Usage
 
 ```tsx
-import * as React from 'react'
+import * as React from "react";
 
-import { useMyHook } from 'react-type-writer'
+import { useTypeWriter } from "react-type-writer";
 
 const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>
-      {example}
-    </div>
-  )
-}
+  const text = useTypeWriter({
+    text: [
+      "Born To Shine!",
+      "Build For Today, Think For The Future!",
+      "Vegaris",
+    ],
+    infiniteLoop: true,
+    blinker: "_",
+    delay: 3000,
+    blinkerDelay: 100,
+  });
+  return <div>{text}</div>;
+};
 ```
 
 ## License
