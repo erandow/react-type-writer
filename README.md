@@ -4,6 +4,8 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+This is a super light-weight and easy to use react hook for **simulating a typing effect**. Unlike many other packages, this doesn't force you to use a component, and just gives you the string, which you can use however you need to.
+
 ## Install
 
 ```bash
