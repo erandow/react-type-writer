@@ -2,7 +2,7 @@
 
 >
 
-[![NPM](https://img.shields.io/npm/v/react-type-writer.svg)](https://www.npmjs.com/package/react-type-writer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-type-writer.svg)](https://www.npmjs.com/package/@vegadev/react-type-writer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
