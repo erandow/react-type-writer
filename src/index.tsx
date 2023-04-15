@@ -6,6 +6,8 @@ export interface ITypeWriter {
   blinkerDelay?: number;
   infiniteLoop?: boolean;
   blinker?: string;
+  typingSpeedConstant?: number;
+  showBlinker?: boolean;
 }
 
 type UseTypeWriterOutput = string;
@@ -17,6 +19,7 @@ export const useTypeWriter = (args: ITypeWriter): UseTypeWriterOutput => {
     blinkerDelay = 500,
     blinker = "|",
     infiniteLoop,
+    typingSpeedConstant = 350,
   } = args;
 
   const dynamicTexts = Array.isArray(text) ? text : [text];
@@ -24,10 +27,18 @@ export const useTypeWriter = (args: ITypeWriter): UseTypeWriterOutput => {
   /** States */
   const [textIndex, setTextIndex] = React.useState(0);
   const [charIndexInText, setCharIndexInText] = React.useState(0);
-  const [showBlinker, setShowBlinker] = React.useState(true);
+  const [showBlinkerState, setShowBlinkerState] = React.useState(true);
   const [reverse, setReverse] = React.useState(false);
 
+  const showBlinker = args.showBlinker ?? showBlinkerState
+
   /** Effects  */
+  React.useEffect(()=> {
+    // reset all states
+    setTextIndex(0);
+    setCharIndexInText(0);
+  }, dynamicTexts)
+
   React.useEffect(() => {
     if (charIndexInText === dynamicTexts[textIndex].length + 1 && !reverse) {
       if (!infiniteLoop && textIndex === dynamicTexts.length - 1) {
@@ -42,7 +53,7 @@ export const useTypeWriter = (args: ITypeWriter): UseTypeWriterOutput => {
         return;
       }
       setReverse(false);
-      setTextIndex((prev) => (prev === dynamicTexts.length - 1 ? 0 : prev + 1));
+      setTextIndex((prev: number) => (prev === dynamicTexts.length - 1 ? 0 : prev + 1));
       return;
     }
 
@@ -57,11 +68,11 @@ export const useTypeWriter = (args: ITypeWriter): UseTypeWriterOutput => {
     typeSpeed = Math.max(
       typeSpeed,
       // eslint-disable-next-line radix
-      parseInt(`${Math.random() * 350}`)
+      parseInt(`${Math.random() * typingSpeedConstant}`)
     );
 
     const timeout = setTimeout(() => {
-      setCharIndexInText((prev) => prev + (reverse ? -1 : 1));
+      setCharIndexInText((prev: number) => prev + (reverse ? -1 : 1));
     }, typeSpeed);
 
     return () => {
@@ -73,7 +84,7 @@ export const useTypeWriter = (args: ITypeWriter): UseTypeWriterOutput => {
   // blinker
   React.useEffect(() => {
     const timeout2 = setTimeout(() => {
-      setShowBlinker((prev) => !prev);
+      setShowBlinkerState((prev: boolean) => !prev);
     }, blinkerDelay);
     return () => clearTimeout(timeout2);
     // eslint-disable-next-line react-hooks/exhaustive-deps

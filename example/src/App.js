@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useTypeWriter } from "react-type-writer";
 
 const App = () => {
+
+  const [text, setText] = useState("Custom Text");
+  const [tempText, setTempText] = useState("");
+
   const singleSentenceExample = useTypeWriter({
     text: "Build For Today, Think For The Future!",
   });
@@ -18,6 +22,7 @@ const App = () => {
       "Build For Today, Think For The Future!",
       "Vegaris",
     ],
+    delay: 5000
   });
 
   const infiniteMultipleSentenceExample = useTypeWriter({
@@ -39,12 +44,25 @@ const App = () => {
     blinker: "_",
     delay: 3000,
     blinkerDelay: 100,
+    showBlinker: false,
   });
 
   const customBlinkerExample = useTypeWriter({
     text: "Born To Shine!",
     infiniteLoop: true,
     blinker: "_",
+  });
+
+  const customSpeedConstantExample = useTypeWriter({
+    text: "Born To Shine!",
+    infiniteLoop: true,
+    blinker: "_",
+    typingSpeedConstant: 50,
+  });
+
+  const customSentenceExample = useTypeWriter({
+    text: text,
+    showBlinker: false
   });
 
   return (
@@ -72,6 +90,18 @@ const App = () => {
       <div className="item">
         <h3>Custom Delay Infinite Multiple Sentences Example:</h3>
         <div className="text">{customDelayExample}</div>
+      </div>
+      <div className="item">
+        <h3>Custom Speed Infinite Multiple Sentences Example:</h3>
+        <div className="text">{customSpeedConstantExample}</div>
+      </div>
+      <div className="item">
+        <h3>Single Sentence Example:</h3>
+        <h6>Write your custom text to be applied.</h6>
+        <input onChange={(e) => setTempText(e.target.value)} />
+        <button onClick={() => setText(tempText)}>Apply</button>
+        <br />
+        <div className="text">{customSentenceExample}</div>
       </div>
     </div>
   );
