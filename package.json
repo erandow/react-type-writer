@@ -1,6 +1,6 @@
 {
   "name": "@vegadev/react-type-writer",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "",
   "author": "vegaris",
   "keywords": [
@@ -38,7 +38,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": ">=^16.0.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
